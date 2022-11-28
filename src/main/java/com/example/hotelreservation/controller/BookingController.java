@@ -1,9 +1,9 @@
 package com.example.hotelreservation.controller;
 
-import com.example.hotelreservation.entity.Room;
+import com.example.hotelreservation.entity.Booking;
 import com.example.hotelreservation.payload.ApiResponse;
-import com.example.hotelreservation.payload.RoomDTO;
-import com.example.hotelreservation.service.RoomService;
+import com.example.hotelreservation.payload.BookingDTO;
+import com.example.hotelreservation.service.BookingService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpEntity;
@@ -15,38 +15,38 @@ import java.util.List;
 
 @RestController
 @RequiredArgsConstructor
-@RequestMapping("/api/room")
-public class RoomController {
+@RequestMapping("/api/booking")
+public class BookingController {
     @Autowired
-    RoomService roomService;
+    BookingService bookingService;
 
     @GetMapping
-    public HttpEntity<?> findAll(){
-        List<Room> all = roomService.findAll();
+    public HttpEntity<?> getAll(){
+        List<Booking> all = bookingService.getAll();
         return new ResponseEntity<>(all, HttpStatus.OK);
     }
 
     @GetMapping
     public HttpEntity<?> getById(@PathVariable Integer id){
-        Room room = roomService.getById(id);
-        return new ResponseEntity<>(room, HttpStatus.OK);
+        Booking booking = bookingService.getById(id);
+        return new ResponseEntity<>(booking, HttpStatus.OK);
     }
 
     @PostMapping("/add")
-    public HttpEntity<?> add(@RequestBody RoomDTO roomDTO){
-        ApiResponse apiResponse = roomService.add(roomDTO);
+    public HttpEntity<?> add(@RequestBody BookingDTO bookingDTO){
+        ApiResponse apiResponse = bookingService.addBooking(bookingDTO);
         return new ResponseEntity<>(apiResponse, HttpStatus.OK);
     }
 
     @PutMapping("/update")
-    public HttpEntity<?> update(@PathVariable Integer id, @RequestBody RoomDTO roomDTO){
-        ApiResponse apiResponse = roomService.update(id, roomDTO);
+    public HttpEntity<?> update(@PathVariable Integer id, @RequestBody BookingDTO bookingDTO){
+        ApiResponse apiResponse = bookingService.updateBooking(id, bookingDTO);
         return new ResponseEntity<>(apiResponse, HttpStatus.OK);
     }
 
     @DeleteMapping("/delete")
     public HttpEntity<?> deleteQA(@PathVariable Integer id){
-        ApiResponse apiResponse = roomService.deleteRoom(id);
+        ApiResponse apiResponse = bookingService.deleteBooking(id);
         return new ResponseEntity<>(apiResponse, HttpStatus.OK);
     }
 }

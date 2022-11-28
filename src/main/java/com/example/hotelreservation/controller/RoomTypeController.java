@@ -1,6 +1,5 @@
 package com.example.hotelreservation.controller;
 
-
 import com.example.hotelreservation.entity.RoomType;
 import com.example.hotelreservation.payload.ApiResponse;
 import com.example.hotelreservation.payload.RoomTypeDTO;
